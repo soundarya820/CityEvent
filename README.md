@@ -10,19 +10,13 @@
   A modern event discovery and management platform that brings local communities, event organizers, and unforgettable experiences together.
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Project-CityEvent-7C3AED?style=for-the-badge&logo=eventbrite&logoColor=white" alt="CityEvent"/>
-  <img src="https://img.shields.io/badge/Stack-MERN-16A34A?style=for-the-badge&logo=mongodb&logoColor=white" alt="MERN Stack"/>
-  <img src="https://img.shields.io/badge/Status-In%20Development-F59E0B?style=for-the-badge" alt="In Development"/>
-</p>
-
 ---
 
 ## ✨ One Platform. Endless Experiences.
 
-Finding interesting events shouldn't be difficult. **CityEvent** is designed to make discovering events and managing event activities easier through a single web platform.
+Finding interesting events shouldn't be difficult. **CityEvent** aims to make discovering events and managing event activities easier through a single web platform.
 
-Whether you're exploring events as an attendee, organizing your next big gathering, or managing the platform as an administrator, CityEvent brings the experience together in one place.
+Whether you're exploring events as an attendee, organizing your next gathering, or managing the platform as an administrator, CityEvent brings these experiences together in one place.
 
 ## 🚀 What Makes CityEvent Special?
 
@@ -57,37 +51,79 @@ Whether you're exploring events as an attendee, organizing your next big gatheri
 | Access registration pages | Manage event participants | Manage event categories |
 | Manage profile information | View organizer dashboard | Manage users and organizers |
 
-## 💻 Crafted with the MERN Stack
+## 💻 Technology Stack
 
-<p>
-  <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React"/>
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=323330" alt="JavaScript"/>
-  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js"/>
-  <img src="https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white" alt="Express.js"/>
-  <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB"/>
-  <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git"/>
-  <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub"/>
-</p>
+CityEvent uses a full-stack web architecture, with the following technologies represented in the project.
 
 | Layer | Technology |
 |---|---|
 | Frontend | React.js, JavaScript, HTML, CSS |
 | Routing | React Router |
+| API Communication | API service modules |
 | Backend | Node.js, Express.js |
 | Database | MongoDB, if configured |
-| Version Control | Git & GitHub |
+| Version Control | Git and GitHub |
+
+## 🏗️ System Architecture
+
+CityEvent is organized around a frontend, backend, and data layer. Users interact with the React frontend, which communicates with the backend through HTTP requests. The backend handles application logic and accesses the database when configured.
+
+```mermaid
+flowchart TD
+    U["Attendees"]
+    O["Event Organizers"]
+    A["Administrators"]
+
+    subgraph F["Frontend — React.js"]
+        UI["User Interface"]
+        P["Pages and Components"]
+        S["API Service Modules"]
+        UI --> P --> S
+    end
+
+    subgraph B["Backend — Node.js and Express.js"]
+        API["HTTP API"]
+        AUTH["Authentication"]
+        EVENT["Event Management"]
+        REG["Registration Management"]
+        ADMIN["Administration"]
+        API --> AUTH
+        API --> EVENT
+        API --> REG
+        API --> ADMIN
+    end
+
+    DB[("MongoDB Database")]
+
+    U --> UI
+    O --> UI
+    A --> UI
+    S <-->|"HTTP Requests / Responses"| API
+
+    AUTH -.-> DB
+    EVENT -.-> DB
+    REG -.-> DB
+    ADMIN -.-> DB
+
+    style F fill:#172554,stroke:#60A5FA,color:#FFFFFF
+    style B fill:#14532D,stroke:#4ADE80,color:#FFFFFF
+```
+
+*Architecture overview: database connections and individual backend operations should be considered implemented only where supported by the actual code.*
 
 ## 🗂️ Inside the Project
 
 ```text
 CityEvent/
-├── backend/          # Server-side application
+├── backend/
 │   ├── server.js
-│   └── package.json
+│   ├── package.json
+│   └── .env.example
 │
-├── frontend/         # React application
+├── frontend/
 │   ├── public/
 │   ├── src/
+│   │   ├── assets/
 │   │   ├── components/
 │   │   ├── context/
 │   │   ├── data/
@@ -97,53 +133,63 @@ CityEvent/
 │   │   │   ├── organizer/
 │   │   │   └── user/
 │   │   └── services/
-│   └── package.json
+│   ├── package.json
+│   └── vite.config.js
 │
+├── .gitignore
 └── README.md
 ```
 
 ## ⚡ Get Started
 
-**1. Clone the repository**
+### Prerequisites
+
+- Node.js and npm
+- Git
+- MongoDB, if required by the backend configuration
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/soundarya820/CityEvent.git
 cd CityEvent
 ```
 
-**2. Install backend dependencies**
+### 2. Install Backend Dependencies
 
 ```bash
 cd backend
 npm install
 ```
 
-Configure the backend environment variables using `backend/.env.example` as a guide. Keep real credentials in your local `.env` file.
+Configure your environment variables using `backend/.env.example` as a reference. Create a local `.env` file with your own settings. Never commit real credentials or secrets.
 
-**3. Start the backend**
+### 3. Start the Backend
 
-Run the start script defined in `backend/package.json`. If it defines a `start` script, use:
+Check the scripts in `backend/package.json`. If a `start` script is defined, run:
 
 ```bash
 npm start
 ```
 
-**4. Install frontend dependencies**
+### 4. Install Frontend Dependencies
 
-Open a new terminal from the project root:
+Open another terminal from the project root and run:
 
 ```bash
 cd frontend
 npm install
 ```
 
-**5. Launch the frontend**
+### 5. Start the Frontend
+
+If the frontend uses Vite, run:
 
 ```bash
 npm run dev
 ```
 
-Open the local URL displayed by the development server. Ensure the backend, database, and API configuration are set up as required.
+Open the local URL shown in your terminal. Ensure the backend, database, and API configuration are set up as required.
 
 ## 🔮 What's Next?
 
