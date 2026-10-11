@@ -191,16 +191,6 @@ npm run dev
 
 Open the local URL shown in your terminal. Ensure the backend, database, and API configuration are set up as required.
 
-## 🔮 What's Next?
-
-- 🔎 Smarter event discovery and filtering
-- 📍 Location-based event exploration
-- 🔔 Event reminders and notifications
-- 💳 Online payment integration
-- ☁️ Production deployment
-
-*These are planned enhancements, not claims about currently implemented features.*
-
 ---
 
 <p align="center">
